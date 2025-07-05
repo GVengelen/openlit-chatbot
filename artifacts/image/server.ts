@@ -1,43 +1,23 @@
-import { myProvider } from '@/lib/ai/providers';
 import { createDocumentHandler } from '@/lib/artifacts/server';
-import { experimental_generateImage } from 'ai';
 
 export const imageDocumentHandler = createDocumentHandler<'image'>({
   kind: 'image',
   onCreateDocument: async ({ title, dataStream }) => {
-    let draftContent = '';
-
-    const { image } = await experimental_generateImage({
-      model: myProvider.imageModel('small-model'),
-      prompt: title,
-      n: 1,
-    });
-
-    draftContent = image.base64;
-
+    // Anthropic does not support image generation. Return an error message.
+    const errorMsg = 'Image generation is not supported with Anthropic models.';
     dataStream.writeData({
       type: 'image-delta',
-      content: image.base64,
+      content: '',
     });
-
-    return draftContent;
+    return errorMsg;
   },
   onUpdateDocument: async ({ description, dataStream }) => {
-    let draftContent = '';
-
-    const { image } = await experimental_generateImage({
-      model: myProvider.imageModel('small-model'),
-      prompt: description,
-      n: 1,
-    });
-
-    draftContent = image.base64;
-
+    // Anthropic does not support image generation. Return an error message.
+    const errorMsg = 'Image generation is not supported with Anthropic models.';
     dataStream.writeData({
       type: 'image-delta',
-      content: image.base64,
+      content: '',
     });
-
-    return draftContent;
+    return errorMsg;
   },
 });

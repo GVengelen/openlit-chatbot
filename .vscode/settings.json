@@ -13,5 +13,10 @@
   "eslint.workingDirectories": [
     { "pattern": "app/*" },
     { "pattern": "packages/*" }
+  ],
+  "github.copilot.chat.alwaysIncludeFiles": [
+    "ARCHITECTURE_DOCUMENTATION.md",
+    "lib/ai/providers.ts",
+    "README.md"
   ]
 }
