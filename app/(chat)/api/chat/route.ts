@@ -36,10 +36,7 @@ import { after } from 'next/server';
 import type { Chat } from '@/lib/db/schema';
 import { differenceInSeconds } from 'date-fns';
 import { ChatSDKError } from '@/lib/errors';
-import Openlit from 'openlit';
 export const maxDuration = 60;
-
-Openlit.init();
 
 let globalStreamContext: ResumableStreamContext | null = null;
 

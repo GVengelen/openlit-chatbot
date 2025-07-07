@@ -12,6 +12,14 @@ import {
   titleModel,
 } from './models.test';
 
+import openlit from 'openlit';
+
+openlit.init({
+  instrumentations: {
+    anthropic: anthropic,
+  },
+});
+
 export const myProvider = isTestEnvironment
   ? customProvider({
       languageModels: {
